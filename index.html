@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport Tag for Mobile Responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Crescent Public School, Siwan | Nursery to Class VIII</title>
     
@@ -10,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Three.js for 3D Graphics -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <style>
         :root {
             --primary-blue: #0E3B85;
@@ -202,12 +204,6 @@
             color: var(--primary-blue);
         }
 
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
         .hero-image img {
             width: 250px;
             height: 250px;
@@ -328,6 +324,40 @@
         .admission-form-section {
             padding: 50px 5%;
             background: white;
+        }
+
+        /* 3D MOON SECTION (AFTER GOOGLE ADMISSION FORM) */
+        .three-moon-section {
+            background: #081226;
+            color: white;
+            padding: 60px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid var(--accent-yellow);
+            border-bottom: 4px solid var(--accent-yellow);
+        }
+
+        .three-moon-section h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.2rem;
+            color: var(--accent-yellow);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(244, 208, 63, 0.5);
+        }
+
+        .three-moon-section p {
+            color: #BDC3C7;
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        #moon-canvas-container {
+            width: 100%;
+            height: 420px;
+            position: relative;
+            margin: 0 auto;
+            cursor: grab;
         }
 
         /* AUTO POPUP MODAL STYLES */
@@ -469,6 +499,10 @@
             .top-bar div {
                 justify-content: center;
             }
+
+            #moon-canvas-container {
+                height: 320px;
+            }
         }
     </style>
 </head>
@@ -505,6 +539,7 @@
             <li><a href="#facilities" onclick="toggleMenu()">Facilities</a></li>
             <li><a href="#gallery" onclick="toggleMenu()">Gallery</a></li>
             <li><a href="#apply" onclick="toggleMenu()">Admission Form</a></li>
+            <li><a href="#3d-moon" onclick="toggleMenu()">3D Moon</a></li>
             <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
         </ul>
 
@@ -520,7 +555,7 @@
             
             <div class="timing-box">
                 <p><strong><i class="fas fa-clock"></i> School Timings:</strong></p>
-                <p>☀ Summer: 7:30 AM – 1:30 PM <br> ❄ Winter: 8:30 AM – 2:00 PM</p>
+                <p>☀️ Summer: 7:30 AM – 1:30 PM <br> ❄ Winter: 8:30 AM – 2:00 PM</p>
             </div>
             <div>
                 <button class="btn-apply" style="font-size: 1rem; padding: 12px 24px;" onclick="openAdmissionModal()"><i class="fas fa-edit"></i> Fill Admission Form</button>
@@ -609,7 +644,7 @@
         </div>
     </section>
 
-    <!-- ON-PAGE ADMISSION FORM SECTION -->
+    <!-- ON-PAGE ADMISSION GOOGLE FORM SECTION -->
     <section class="admission-form-section" id="apply">
         <div style="max-width: 750px; margin: 0 auto; text-align: center;">
             <h2 class="section-header">Online Admission Enquiry (2026-2027)</h2>
@@ -627,6 +662,13 @@
                 </iframe>
             </div>
         </div>
+    </section>
+
+    <!-- 3D CRESCENT MOON SECTION (PLACED RIGHT AFTER GOOGLE ADMISSION FORM) -->
+    <section class="three-moon-section" id="3d-moon">
+        <h2>Interactive 3D Crescent Moon</h2>
+        <p>A glowing 3D Crescent Moon symbolizing Crescent Public School. (Touch or Move Mouse to Rotate)</p>
+        <div id="moon-canvas-container"></div>
     </section>
 
     <!-- FOOTER -->
@@ -672,10 +714,11 @@
                 </iframe>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT & 3D REALISTIC CRESCENT MOON SCRIPT -->
     <script>
+        // Modal and Mobile Navigation Functions
         window.addEventListener('DOMContentLoaded', (event) => {
             setTimeout(() => {
                 document.getElementById('admissionModal').style.display = 'flex';
@@ -701,6 +744,132 @@
                 modal.style.display = "none";
             }
         }
+
+        // --- THREE.JS REALISTIC 3D CRESCENT MOON ENGINE ---
+        const moonContainer = document.getElementById('moon-canvas-container');
+        
+        // Scene, Camera, Renderer
+        const moonScene = new THREE.Scene();
+        const moonCamera = new THREE.PerspectiveCamera(45, moonContainer.clientWidth / moonContainer.clientHeight, 0.1, 1000);
+        moonCamera.position.z = 10;
+
+        const moonRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        moonRenderer.setSize(moonContainer.clientWidth, moonContainer.clientHeight);
+        moonRenderer.setPixelRatio(window.devicePixelRatio);
+        moonContainer.appendChild(moonRenderer.domElement);
+
+        // Group to hold the 3D Moon
+        const moonGroup = new THREE.Group();
+        moonScene.add(moonGroup);
+
+        // Construct Crescent Moon Geometry using CSG (Subtracted Spheres Method)
+        const moonRadius = 2.8;
+        const moonGeometry = new THREE.SphereGeometry(moonRadius, 64, 64);
+        
+        // Golden/Metallic Moon Material
+        const moonMaterial = new THREE.MeshStandardMaterial({
+            color: 0xF4D03F,
+            metalness: 0.8,
+            roughness: 0.25,
+            emissive: 0x332200
+        });
+
+        const fullMoon = new THREE.Mesh(moonGeometry, moonMaterial);
+        
+        // Subtract Sphere to create Crescent Shape Effect
+        const shadowSphereGeom = new THREE.SphereGeometry(moonRadius * 0.98, 64, 64);
+        const shadowSphereMat = new THREE.MeshBasicMaterial({ color: 0x081226 }); // Matches section background
+        const shadowSphere = new THREE.Mesh(shadowSphereGeom, shadowSphereMat);
+        shadowSphere.position.set(1.2, 0.4, 0.5);
+
+        moonGroup.add(fullMoon);
+        moonGroup.add(shadowSphere);
+
+        // Shining Stars Background Particles
+        const starCount = 500;
+        const starGeometry = new THREE.BufferGeometry();
+        const starPositions = new Float32Array(starCount * 3);
+        
+        for (let i = 0; i < starCount * 3; i += 3) {
+            starPositions[i] = (Math.random() - 0.5) * 20;
+            starPositions[i+1] = (Math.random() - 0.5) * 20;
+            starPositions[i+2] = (Math.random() - 0.5) * 20;
+        }
+
+        starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+        const starMaterial = new THREE.PointsMaterial({
+            color: 0xFFFFFF,
+            size: 0.06,
+            transparent: true,
+            opacity: 0.8
+        });
+        const starSystem = new THREE.Points(starGeometry, starMaterial);
+        moonScene.add(starSystem);
+
+        // Lighting System for 3D Moon Glow
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        moonScene.add(ambientLight);
+
+        const moonLight = new THREE.DirectionalLight(0xF4D03F, 3);
+        moonLight.position.set(-5, 5, 5);
+        moonScene.add(moonLight);
+
+        const blueGlowLight = new THREE.PointLight(0x0E3B85, 2, 15);
+        blueGlowLight.position.set(5, -3, 3);
+        moonScene.add(blueGlowLight);
+
+        // Mouse and Touch Interactivity
+        let mouseX = 0, mouseY = 0;
+        let targetRotationX = 0, targetRotationY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            const rect = moonContainer.getBoundingClientRect();
+            if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                mouseX = (e.clientX - rect.left - rect.width / 2) / 100;
+                mouseY = (e.clientY - rect.top - rect.height / 2) / 100;
+            }
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                const rect = moonContainer.getBoundingClientRect();
+                mouseX = (e.touches[0].clientX - rect.left - rect.width / 2) / 100;
+                mouseY = (e.touches[0].clientY - rect.top - rect.height / 2) / 100;
+            }
+        });
+
+        // Animation Loop
+        let clock = new THREE.Clock();
+
+        function animateMoon() {
+            requestAnimationFrame(animateMoon);
+
+            const elapsedTime = clock.getElapsedTime();
+
+            // Continuous rotation
+            moonGroup.rotation.y += 0.005;
+
+            // Smooth Movement towards cursor/touch
+            targetRotationX = mouseY * 0.4;
+            targetRotationY = mouseX * 0.4;
+
+            moonGroup.rotation.x += (targetRotationX - moonGroup.rotation.x) * 0.05;
+            moonGroup.rotation.z += (targetRotationY - moonGroup.rotation.z) * 0.05;
+
+            // Star twinkling motion
+            starSystem.rotation.y = elapsedTime * 0.02;
+
+            moonRenderer.render(moonScene, moonCamera);
+        }
+
+        animateMoon();
+
+        // Canvas Responsive Resize
+        window.addEventListener('resize', () => {
+            moonCamera.aspect = moonContainer.clientWidth / moonContainer.clientHeight;
+            moonCamera.updateProjectionMatrix();
+            moonRenderer.setSize(moonContainer.clientWidth, moonContainer.clientHeight);
+        });
     </script>
 
 </body>
