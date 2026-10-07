@@ -224,14 +224,14 @@
         .blackboard-frame {
             max-width: 800px;
             margin: 0 auto;
-            background: #8B5A2B; /* Wooden Frame Color */
+            background: #8B5A2B;
             padding: 18px;
             border-radius: 15px;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
         }
 
         .blackboard-screen {
-            background: #22252A; /* Dark Chalkboard Background */
+            background: #22252A;
             border: 3px dashed #5D4037;
             border-radius: 8px;
             padding: 35px 25px;
@@ -253,7 +253,7 @@
         }
 
         .chalk-text {
-            font-family: 'Caveat', cursive; /* Handwritten Chalk Font */
+            font-family: 'Caveat', cursive;
             font-size: 2.1rem;
             line-height: 1.5;
             color: #FFFFFF;
@@ -262,10 +262,116 @@
             word-spacing: 2px;
         }
 
-        .chalk-icon {
-            font-size: 1.2rem;
+        /* TEACHERS ATTENDANCE PORTAL SECTION */
+        .attendance-section {
+            padding: 50px 5%;
+            background: #FFFFFF;
+            text-align: center;
+        }
+
+        .attendance-card {
+            max-width: 650px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #0E3B85 0%, #1A5276 100%);
+            padding: 40px 25px;
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 10px 25px rgba(14, 59, 133, 0.25);
+            border-bottom: 6px solid var(--accent-yellow);
+        }
+
+        .attendance-card i {
+            font-size: 3rem;
             color: var(--accent-yellow);
-            margin-right: 8px;
+            margin-bottom: 15px;
+        }
+
+        .attendance-card h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .attendance-card p {
+            color: #E0E6ED;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .btn-attendance {
+            background: var(--accent-yellow);
+            color: #0E3B85;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(244, 208, 63, 0.4);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-attendance:hover {
+            transform: scale(1.05);
+            background-color: #f1c40f;
+        }
+
+        /* FEE PAYMENT SECTION */
+        .fee-section {
+            padding: 50px 5%;
+            background: var(--soft-bg);
+            text-align: center;
+        }
+
+        .fee-card {
+            max-width: 550px;
+            margin: 0 auto;
+            background: white;
+            padding: 35px 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border-top: 6px solid var(--playful-green);
+        }
+
+        .fee-card h3 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .fee-card p.subtext {
+            color: #566573;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .qr-box {
+            background: #F4F6F9;
+            padding: 15px;
+            border-radius: 15px;
+            display: inline-block;
+            border: 2px dashed var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .qr-box img {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .payment-info-box {
+            background: #EBF5FB;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            text-align: left;
+            font-size: 0.92rem;
+            color: #2C3E50;
         }
 
         /* Academics Section */
@@ -594,6 +700,8 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="#home" onclick="toggleMenu()">Home</a></li>
             <li><a href="#notice" onclick="toggleMenu()">Notice Board</a></li>
+            <li><a href="#teachers-attendance" onclick="toggleMenu()">Teachers Portal</a></li>
+            <li><a href="#fee-payment" onclick="toggleMenu()">Fee Payment</a></li>
             <li><a href="#academics" onclick="toggleMenu()">Academics</a></li>
             <li><a href="#facilities" onclick="toggleMenu()">Facilities</a></li>
             <li><a href="#gallery" onclick="toggleMenu()">Gallery</a></li>
@@ -633,6 +741,39 @@
                 <div class="chalk-text">
                     " 10-10-2026 Dear Parents /Students our School is Open Today at 7:30 am to 1 :00pm "
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEACHERS ATTENDANCE PORTAL SECTION WITH PASSWORD PROTECTION -->
+    <section class="attendance-section" id="teachers-attendance">
+        <div class="attendance-card">
+            <i class="fas fa-user-check"></i>
+            <h3>Teachers Attendance Portal</h3>
+            <p>Restricted Portal for Crescent Public School Teaching Staff Only.</p>
+            <button class="btn-attendance" onclick="openAttendancePortal()">
+                <i class="fas fa-lock"></i> Access Attendance Portal
+            </button>
+        </div>
+    </section>
+
+    <!-- ONLINE FEE PAYMENT SECTION -->
+    <section class="fee-section" id="fee-payment">
+        <div class="fee-card">
+            <i class="fas fa-qrcode" style="font-size: 2.8rem; color: var(--playful-green); margin-bottom: 10px;"></i>
+            <h3>Online School Fee Payment</h3>
+            <p class="subtext">You can conveniently pay your child's school fees using the QR code below. This is the official payment QR code linked directly to the Principal's Account.</p>
+            
+            <div class="qr-box">
+                <!-- Replace 'qr.jpg' with your actual QR image file name -->
+                <img src="qr.jpeg" alt="Official Principal Account Payment QR Code">
+            </div>
+
+            <div class="payment-info-box">
+                <p><strong><i class="fas fa-info-circle"></i> Payment Guidelines:</strong></p>
+                <p>1. Scan the QR code using any UPI App (Google Pay, PhonePe, Paytm, BHIM).</p>
+                <p>2. Please mention the <strong>Student Name & Class</strong> in the payment remarks/notes.</p>
+                <p>3. Keep a screenshot of the payment receipt and share it with the school office for acknowledgement.</p>
             </div>
         </div>
     </section>
@@ -706,27 +847,35 @@
             </div>
             <div class="gallery-card">
                 <img src="photo1.jpg.jpeg" alt="Faculty Team">
-                <p>Our Teaching Angle's</p>
+                <p>Our Teaching Staff</p>
             </div>
             <div class="gallery-card">
                 <img src="photo3.jpg.jpeg" alt="Teachers Staff">
                 <p>Faculty &amp; Management</p>
             </div>
-           <div class="gallery-card">
-                <img src="photo5.jpg.jpeg" alt="Cultural Events">
-                <p>Cultural Events</p>
+            <div class="gallery-card">
+                <img src="photo4.jpg.jpeg" alt="Teachers Staff">
+                <p>Faculty &amp; Management</p>
             </div>
-           <div class="gallery-card">
-                <img src="photo7.jpg.jpeg" alt="Cultural Events">
-                <p>Cultural Events</p>
+            <div class="gallery-card">
+                <img src="photo5.jpg.jpeg" alt="Teachers Staff">
+                <p>Faculty &amp; Management</p>
             </div>
-           <div class="gallery-card">
-                <img src="photo8.jpg.jpeg" alt="Cultural Events">
-                <p>Cultural Events</p>
+            <div class="gallery-card">
+                <img src="photo6.jpg.jpeg" alt="Teachers Staff">
+                <p>Faculty &amp; Management</p>
             </div>
-           <div class="gallery-card">
-                <img src="photo9.jpg.jpeg" alt="Cultural Events">
-                <p>Cultural Events</p>
+            <div class="gallery-card">
+                <img src="photo7.jpg.jpeg" alt="Teachers Staff">
+                <p>Faculty &amp; Management</p>
+            </div>
+            <div class="gallery-card">
+                <img src="photo8.jpg.jpeg" alt="Teachers Staff">
+                <p>Faculty &amp; Management</p>
+            </div>
+            <div class="gallery-card">
+                <img src="photo9.jpg.jpeg" alt="Teachers Staff">
+                <p>Faculty &amp; Management</p>
             </div>
         </div>
     </section>
@@ -805,6 +954,19 @@
 
     <!-- JAVASCRIPT & 3D REALISTIC CRESCENT MOON SCRIPT -->
     <script>
+        // Teachers Attendance Portal Link & Password Protection
+        const ATTENDANCE_URL = "https://kesharirajesh239-lang.github.io/Teacher-Attendance-Portal/"; 
+
+        function openAttendancePortal() {
+            let password = prompt("🔒 Restricted Access!\nPlease enter the Teachers Portal Password:");
+            if (password === "CPS841226") {
+                alert("✅ Access Granted! Redirecting to Teacher Attendance Portal...");
+                window.open(ATTENDANCE_URL, "_blank");
+            } else if (password !== null) {
+                alert("❌ Incorrect Password! Access Denied.");
+            }
+        }
+
         // Modal and Mobile Navigation Functions
         window.addEventListener('DOMContentLoaded', (event) => {
             setTimeout(() => {
