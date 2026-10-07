@@ -316,6 +316,80 @@
             background-color: #f1c40f;
         }
 
+        /* PASSWORD MODAL FOR TEACHERS PORTAL */
+        .pass-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 15px;
+        }
+
+        .pass-modal-card {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-top: 6px solid var(--primary-blue);
+        }
+
+        .pass-modal-card h4 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .pass-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border: 2px solid #BDC3C7;
+            border-radius: 10px;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+        }
+
+        .pass-input:focus {
+            border-color: var(--primary-blue);
+        }
+
+        .pass-btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .pass-submit-btn {
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .pass-cancel-btn {
+            background: #E74C3C;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
         /* FEE PAYMENT SECTION */
         .fee-section {
             padding: 50px 5%;
@@ -486,7 +560,7 @@
             background: white;
         }
 
-        /* 3D MOON SECTION (AFTER GOOGLE ADMISSION FORM) */
+        /* 3D MOON SECTION */
         .three-moon-section {
             background: #081226;
             color: white;
@@ -745,17 +819,30 @@
         </div>
     </section>
 
-    <!-- TEACHERS ATTENDANCE PORTAL SECTION WITH PASSWORD PROTECTION -->
+    <!-- TEACHERS ATTENDANCE PORTAL SECTION -->
     <section class="attendance-section" id="teachers-attendance">
         <div class="attendance-card">
             <i class="fas fa-user-check"></i>
             <h3>Teachers Attendance Portal</h3>
             <p>Restricted Portal for Crescent Public School Teaching Staff Only.</p>
-            <button class="btn-attendance" onclick="openAttendancePortal()">
+            <button class="btn-attendance" onclick="openPassModal()">
                 <i class="fas fa-lock"></i> Access Attendance Portal
             </button>
         </div>
     </section>
+
+    <!-- TEACHERS PORTAL PASSWORD MODAL CARD -->
+    <div class="pass-modal-overlay" id="passModal">
+        <div class="pass-modal-card">
+            <h4><i class="fas fa-user-lock"></i> Staff Authentication</h4>
+            <p style="font-size: 0.9rem; color: #566573;">Enter Security Password to access the Teacher Attendance Portal:</p>
+            <input type="password" id="passInput" class="pass-input" placeholder="Enter Password Here">
+            <div class="pass-btn-group">
+                <button class="pass-submit-btn" onclick="verifyAndOpenPortal()">Login</button>
+                <button class="pass-cancel-btn" onclick="closePassModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ONLINE FEE PAYMENT SECTION -->
     <section class="fee-section" id="fee-payment">
@@ -765,8 +852,7 @@
             <p class="subtext">You can conveniently pay your child's school fees using the QR code below. This is the official payment QR code linked directly to the Principal's Account.</p>
             
             <div class="qr-box">
-                <!-- Replace 'qr.jpg' with your actual QR image file name -->
-                <img src="qr.jpeg" alt="Official Principal Account Payment QR Code">
+                <img src="qr.jpg" alt="Official Principal Account Payment QR Code">
             </div>
 
             <div class="payment-info-box">
@@ -838,43 +924,19 @@
         <h2 class="section-header" style="text-align: center;">Life at Crescent Public School</h2>
         <div class="gallery-grid">
             <div class="gallery-card">
-                <img src="photo4.jpg.jpeg" alt="Student Celebration">
+                <img src="photo4.jpg.jpg" alt="Student Celebration">
                 <p>Children's Activities</p>
             </div>
             <div class="gallery-card">
-                <img src="photo2.jpg.jpeg" alt="Cultural Events">
+                <img src="photo2.jpg.jpg" alt="Cultural Events">
                 <p>Cultural Events</p>
             </div>
             <div class="gallery-card">
-                <img src="photo1.jpg.jpeg" alt="Faculty Team">
+                <img src="photo1.jpg.jpg" alt="Faculty Team">
                 <p>Our Teaching Staff</p>
             </div>
             <div class="gallery-card">
-                <img src="photo3.jpg.jpeg" alt="Teachers Staff">
-                <p>Faculty &amp; Management</p>
-            </div>
-            <div class="gallery-card">
-                <img src="photo4.jpg.jpeg" alt="Teachers Staff">
-                <p>Faculty &amp; Management</p>
-            </div>
-            <div class="gallery-card">
-                <img src="photo5.jpg.jpeg" alt="Teachers Staff">
-                <p>Faculty &amp; Management</p>
-            </div>
-            <div class="gallery-card">
-                <img src="photo6.jpg.jpeg" alt="Teachers Staff">
-                <p>Faculty &amp; Management</p>
-            </div>
-            <div class="gallery-card">
-                <img src="photo7.jpg.jpeg" alt="Teachers Staff">
-                <p>Faculty &amp; Management</p>
-            </div>
-            <div class="gallery-card">
-                <img src="photo8.jpg.jpeg" alt="Teachers Staff">
-                <p>Faculty &amp; Management</p>
-            </div>
-            <div class="gallery-card">
-                <img src="photo9.jpg.jpeg" alt="Teachers Staff">
+                <img src="photo3.jpg.jpg" alt="Teachers Staff">
                 <p>Faculty &amp; Management</p>
             </div>
         </div>
@@ -900,7 +962,7 @@
         </div>
     </section>
 
-    <!-- 3D CRESCENT MOON SECTION (PLACED RIGHT AFTER GOOGLE ADMISSION FORM) -->
+    <!-- 3D CRESCENT MOON SECTION -->
     <section class="three-moon-section" id="3d-moon">
         <h2>Interactive 3D Crescent Moon</h2>
         <p>A glowing 3D Crescent Moon symbolizing Crescent Public School. (Touch or Move Mouse to Rotate)</p>
@@ -952,17 +1014,25 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT & 3D REALISTIC CRESCENT MOON SCRIPT -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Teachers Attendance Portal Link & Password Protection
         const ATTENDANCE_URL = "https://kesharirajesh239-lang.github.io/Teacher-Attendance-Portal/"; 
 
-        function openAttendancePortal() {
-            let password = prompt("🔒 Restricted Access!\nPlease enter the Teachers Portal Password:");
-            if (password === "CPS841226") {
-                alert("✅ Access Granted! Redirecting to Teacher Attendance Portal...");
-                window.open(ATTENDANCE_URL, "_blank");
-            } else if (password !== null) {
+        function openPassModal() {
+            document.getElementById('passModal').style.display = 'flex';
+            document.getElementById('passInput').value = '';
+        }
+
+        function closePassModal() {
+            document.getElementById('passModal').style.display = 'none';
+        }
+
+        function verifyAndOpenPortal() {
+            const enteredPass = document.getElementById('passInput').value;
+            if (enteredPass === "CPS841226") {
+                closePassModal();
+                window.location.href = ATTENDANCE_URL; // Smooth redirect without popup blockage
+            } else {
                 alert("❌ Incorrect Password! Access Denied.");
             }
         }
@@ -989,12 +1059,16 @@
 
         window.onclick = function(event) {
             let modal = document.getElementById('admissionModal');
+            let passModal = document.getElementById('passModal');
             if (event.target == modal) {
                 modal.style.display = "none";
             }
+            if (event.target == passModal) {
+                passModal.style.display = "none";
+            }
         }
 
-        // --- THREE.JS REALISTIC 3D CRESCENT MOON ENGINE ---
+        // THREE.JS REALISTIC 3D CRESCENT MOON ENGINE
         const moonContainer = document.getElementById('moon-canvas-container');
         
         const moonScene = new THREE.Scene();
