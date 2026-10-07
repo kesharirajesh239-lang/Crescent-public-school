@@ -6,7 +6,7 @@
     <title>Crescent Public School, Siwan | Nursery to Class VIII</title>
     
     <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Three.js for 3D Graphics -->
@@ -212,6 +212,60 @@
             border: 6px solid white;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             background: white;
+        }
+
+        /* BLACKBOARD CHALK NOTICE BOARD SECTION */
+        .chalkboard-section {
+            padding: 50px 5%;
+            background: #EAECEE;
+            text-align: center;
+        }
+
+        .blackboard-frame {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #8B5A2B; /* Wooden Frame Color */
+            padding: 18px;
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .blackboard-screen {
+            background: #22252A; /* Dark Chalkboard Background */
+            border: 3px dashed #5D4037;
+            border-radius: 8px;
+            padding: 35px 25px;
+            color: #FFFFFF;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .blackboard-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            color: var(--accent-yellow);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .chalk-text {
+            font-family: 'Caveat', cursive; /* Handwritten Chalk Font */
+            font-size: 2.1rem;
+            line-height: 1.5;
+            color: #FFFFFF;
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.5);
+            margin-top: 15px;
+            word-spacing: 2px;
+        }
+
+        .chalk-icon {
+            font-size: 1.2rem;
+            color: var(--accent-yellow);
+            margin-right: 8px;
         }
 
         /* Academics Section */
@@ -500,6 +554,10 @@
                 justify-content: center;
             }
 
+            .chalk-text {
+                font-size: 1.6rem;
+            }
+
             #moon-canvas-container {
                 height: 320px;
             }
@@ -535,6 +593,7 @@
 
         <ul class="nav-links" id="navLinks">
             <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+            <li><a href="#notice" onclick="toggleMenu()">Notice Board</a></li>
             <li><a href="#academics" onclick="toggleMenu()">Academics</a></li>
             <li><a href="#facilities" onclick="toggleMenu()">Facilities</a></li>
             <li><a href="#gallery" onclick="toggleMenu()">Gallery</a></li>
@@ -563,6 +622,18 @@
         </div>
         <div class="hero-image">
             <img src="logo.jpg.jpeg" alt="School Logo Mascot">
+        </div>
+    </section>
+
+    <!-- BLACKBOARD CHALK NOTICE BOARD SECTION -->
+    <section class="chalkboard-section" id="notice">
+        <div class="blackboard-frame">
+            <div class="blackboard-screen">
+                <div class="blackboard-title"><i class="fas fa-chalkboard"></i> Important School Notice</div>
+                <div class="chalk-text">
+                    " 10-10-2026 Dear Parents /Students our School is Open Today at 7:30 am to 1 :00pm "
+                </div>
+            </div>
         </div>
     </section>
 
@@ -635,11 +706,27 @@
             </div>
             <div class="gallery-card">
                 <img src="photo1.jpg.jpeg" alt="Faculty Team">
-                <p>Our Teaching Staff</p>
+                <p>Our Teaching Angle's</p>
             </div>
             <div class="gallery-card">
                 <img src="photo3.jpg.jpeg" alt="Teachers Staff">
                 <p>Faculty &amp; Management</p>
+            </div>
+           <div class="gallery-card">
+                <img src="photo5.jpg.jpeg" alt="Cultural Events">
+                <p>Cultural Events</p>
+            </div>
+           <div class="gallery-card">
+                <img src="photo7.jpg.jpeg" alt="Cultural Events">
+                <p>Cultural Events</p>
+            </div>
+           <div class="gallery-card">
+                <img src="photo8.jpg.jpeg" alt="Cultural Events">
+                <p>Cultural Events</p>
+            </div>
+           <div class="gallery-card">
+                <img src="photo9.jpg.jpeg" alt="Cultural Events">
+                <p>Cultural Events</p>
             </div>
         </div>
     </section>
@@ -714,7 +801,7 @@
                 </iframe>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- JAVASCRIPT & 3D REALISTIC CRESCENT MOON SCRIPT -->
     <script>
@@ -748,7 +835,6 @@
         // --- THREE.JS REALISTIC 3D CRESCENT MOON ENGINE ---
         const moonContainer = document.getElementById('moon-canvas-container');
         
-        // Scene, Camera, Renderer
         const moonScene = new THREE.Scene();
         const moonCamera = new THREE.PerspectiveCamera(45, moonContainer.clientWidth / moonContainer.clientHeight, 0.1, 1000);
         moonCamera.position.z = 10;
@@ -758,15 +844,12 @@
         moonRenderer.setPixelRatio(window.devicePixelRatio);
         moonContainer.appendChild(moonRenderer.domElement);
 
-        // Group to hold the 3D Moon
         const moonGroup = new THREE.Group();
         moonScene.add(moonGroup);
 
-        // Construct Crescent Moon Geometry using CSG (Subtracted Spheres Method)
         const moonRadius = 2.8;
         const moonGeometry = new THREE.SphereGeometry(moonRadius, 64, 64);
         
-        // Golden/Metallic Moon Material
         const moonMaterial = new THREE.MeshStandardMaterial({
             color: 0xF4D03F,
             metalness: 0.8,
@@ -776,16 +859,14 @@
 
         const fullMoon = new THREE.Mesh(moonGeometry, moonMaterial);
         
-        // Subtract Sphere to create Crescent Shape Effect
         const shadowSphereGeom = new THREE.SphereGeometry(moonRadius * 0.98, 64, 64);
-        const shadowSphereMat = new THREE.MeshBasicMaterial({ color: 0x081226 }); // Matches section background
+        const shadowSphereMat = new THREE.MeshBasicMaterial({ color: 0x081226 });
         const shadowSphere = new THREE.Mesh(shadowSphereGeom, shadowSphereMat);
         shadowSphere.position.set(1.2, 0.4, 0.5);
 
         moonGroup.add(fullMoon);
         moonGroup.add(shadowSphere);
 
-        // Shining Stars Background Particles
         const starCount = 500;
         const starGeometry = new THREE.BufferGeometry();
         const starPositions = new Float32Array(starCount * 3);
@@ -806,7 +887,6 @@
         const starSystem = new THREE.Points(starGeometry, starMaterial);
         moonScene.add(starSystem);
 
-        // Lighting System for 3D Moon Glow
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
         moonScene.add(ambientLight);
 
@@ -818,7 +898,6 @@
         blueGlowLight.position.set(5, -3, 3);
         moonScene.add(blueGlowLight);
 
-        // Mouse and Touch Interactivity
         let mouseX = 0, mouseY = 0;
         let targetRotationX = 0, targetRotationY = 0;
 
@@ -838,7 +917,6 @@
             }
         });
 
-        // Animation Loop
         let clock = new THREE.Clock();
 
         function animateMoon() {
@@ -846,17 +924,14 @@
 
             const elapsedTime = clock.getElapsedTime();
 
-            // Continuous rotation
             moonGroup.rotation.y += 0.005;
 
-            // Smooth Movement towards cursor/touch
             targetRotationX = mouseY * 0.4;
             targetRotationY = mouseX * 0.4;
 
             moonGroup.rotation.x += (targetRotationX - moonGroup.rotation.x) * 0.05;
             moonGroup.rotation.z += (targetRotationY - moonGroup.rotation.z) * 0.05;
 
-            // Star twinkling motion
             starSystem.rotation.y = elapsedTime * 0.02;
 
             moonRenderer.render(moonScene, moonCamera);
@@ -864,7 +939,6 @@
 
         animateMoon();
 
-        // Canvas Responsive Resize
         window.addEventListener('resize', () => {
             moonCamera.aspect = moonContainer.clientWidth / moonContainer.clientHeight;
             moonCamera.updateProjectionMatrix();
