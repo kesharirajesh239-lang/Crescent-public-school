@@ -37,12 +37,22 @@
             color: var(--text-dark);
         }
 
+        /* HEADER CONTAINER (FIXED ON TOP ALWAYS) */
+        .header-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+
         /* Top Announcement Bar */
         .top-bar {
             background: var(--primary-blue);
             color: white;
-            padding: 10px 5%;
-            font-size: 0.85rem;
+            padding: 8px 5%;
+            font-size: 0.82rem;
             font-weight: 700;
             display: flex;
             justify-content: space-between;
@@ -66,14 +76,10 @@
         /* Navigation Bar */
         nav {
             background: white;
-            padding: 12px 5%;
+            padding: 10px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
 
         .logo-container {
@@ -83,21 +89,21 @@
         }
 
         .logo-img {
-            height: 55px;
-            width: 55px;
+            height: 50px;
+            width: 50px;
             object-fit: contain;
             border-radius: 50%;
         }
 
         .brand-title h2 {
             font-family: 'Fredoka One', cursive;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             color: var(--primary-blue);
             line-height: 1.1;
         }
 
         .brand-title p {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--accent-orange);
             font-weight: 800;
             letter-spacing: 0.5px;
@@ -105,7 +111,7 @@
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 18px;
             list-style: none;
             align-items: center;
         }
@@ -114,7 +120,7 @@
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: color 0.3s;
         }
 
@@ -125,7 +131,7 @@
         .btn-apply {
             background: var(--playful-green);
             color: white;
-            padding: 10px 20px;
+            padding: 8px 18px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 800;
@@ -147,8 +153,9 @@
             cursor: pointer;
         }
 
-        /* Hero Banner */
+        /* Hero Banner Padding Adjustment for Fixed Header */
         .hero {
+            margin-top: 110px; /* Offset for fixed header */
             background: linear-gradient(135deg, #EBF5FB 0%, #D4EFDF 100%);
             padding: 50px 5%;
             display: flex;
@@ -262,6 +269,99 @@
             word-spacing: 2px;
         }
 
+        /* STUDENT RESULT & RANKS DROPDOWN SECTION */
+        .results-section {
+            padding: 50px 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .results-container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--soft-bg);
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            border: 1px solid #E5E8E8;
+        }
+
+        .dropdown-box {
+            margin: 20px 0 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .dropdown-box label {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+        }
+
+        .class-select {
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            background: white;
+            border: 2px solid var(--primary-blue);
+            border-radius: 12px;
+            outline: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: border-color 0.3s;
+        }
+
+        .class-select:focus {
+            border-color: var(--accent-orange);
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .results-table th {
+            background: var(--primary-blue);
+            color: white;
+            padding: 14px 10px;
+            font-size: 1rem;
+            font-family: 'Fredoka One', cursive;
+            letter-spacing: 0.5px;
+        }
+
+        .results-table td {
+            padding: 14px 10px;
+            border-bottom: 1px solid #F0F3F4;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .results-table tr:hover {
+            background: #EBF5FB;
+        }
+
+        .badge-rank {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            color: white;
+            font-weight: 800;
+            font-size: 0.85rem;
+        }
+
+        .rank-1 { background: #F1C40F; color: #7D6608; }
+        .rank-2 { background: #BDC3C7; color: #2C3E50; }
+        .rank-3 { background: #E67E22; color: white; }
+
         /* TEACHERS ATTENDANCE PORTAL SECTION */
         .attendance-section {
             padding: 50px 5%;
@@ -327,7 +427,7 @@
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 10000;
+            z-index: 20000;
             padding: 15px;
         }
 
@@ -605,7 +705,7 @@
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
+            z-index: 20000;
             padding: 10px;
         }
 
@@ -690,6 +790,13 @@
 
         /* MOBILE SPECIFIC MEDIA QUERIES */
         @media (max-width: 850px) {
+            .hero {
+                margin-top: 140px; /* Adjusted mobile margin */
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 30px 5%;
+            }
+
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -708,12 +815,6 @@
 
             .menu-toggle {
                 display: block;
-            }
-
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding: 30px 5%;
             }
 
             .hero-text h1 {
@@ -746,46 +847,50 @@
 </head>
 <body>
 
-    <!-- TOP ANNOUNCEMENT BAR -->
-    <div class="top-bar">
-        <div>
-            <span><i class="fas fa-graduation-cap"></i> Admissions Open for Session 2026-2027</span>
-        </div>
-        <div>
-            <span><i class="fas fa-phone"></i> +91 9015608525</span>
-            <span><i class="fas fa-envelope"></i> crescentpublicschool68@gmail.com</span>
-        </div>
-    </div>
-
-    <!-- NAVIGATION HEADER -->
-    <nav>
-        <div class="logo-container">
-            <img src="logo.jpg.jpeg" alt="Crescent Public School Logo" class="logo-img">
-            <div class="brand-title">
-                <h2>CRESCENT PUBLIC SCHOOL</h2>
-                <p>SHUKLA TOLI, SIWAN</p>
+    <!-- FIXED TOP HEADER (NAV & ANNOUNCEMENT BAR) -->
+    <div class="header-wrapper">
+        <!-- TOP ANNOUNCEMENT BAR -->
+        <div class="top-bar">
+            <div>
+                <span><i class="fas fa-graduation-cap"></i> Admissions Open for Session 2026-2027</span>
+            </div>
+            <div>
+                <span><i class="fas fa-phone"></i> +91 9015608525</span>
+                <span><i class="fas fa-envelope"></i> crescentpublicschool68@gmail.com</span>
             </div>
         </div>
-        
-        <div class="menu-toggle" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
 
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home" onclick="toggleMenu()">Home</a></li>
-            <li><a href="#notice" onclick="toggleMenu()">Notice Board</a></li>
-            <li><a href="#teachers-attendance" onclick="toggleMenu()">Teachers Portal</a></li>
-            <li><a href="#fee-payment" onclick="toggleMenu()">Fee Payment</a></li>
-            <li><a href="#academics" onclick="toggleMenu()">Academics</a></li>
-            <li><a href="#facilities" onclick="toggleMenu()">Facilities</a></li>
-            <li><a href="#gallery" onclick="toggleMenu()">Gallery</a></li>
-            <li><a href="#apply" onclick="toggleMenu()">Admission Form</a></li>
-            <li><a href="#3d-moon" onclick="toggleMenu()">3D Moon</a></li>
-            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-        </ul>
+        <!-- NAVIGATION HEADER -->
+        <nav>
+            <div class="logo-container">
+                <img src="logo.jpg.jpeg" alt="Crescent Public School Logo" class="logo-img">
+                <div class="brand-title">
+                    <h2>CRESCENT PUBLIC SCHOOL</h2>
+                    <p>SHUKLA TOLI, SIWAN</p>
+                </div>
+            </div>
+            
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
 
-        <button class="btn-apply" onclick="openAdmissionModal()"><i class="fas fa-paper-plane"></i> Apply</button>
-    </nav>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+                <li><a href="#notice" onclick="toggleMenu()">Notice Board</a></li>
+                <li><a href="#results" onclick="toggleMenu()">Results &amp; Ranks</a></li>
+                <li><a href="#teachers-attendance" onclick="toggleMenu()">Teachers Portal</a></li>
+                <li><a href="#fee-payment" onclick="toggleMenu()">Fee Payment</a></li>
+                <li><a href="#academics" onclick="toggleMenu()">Academics</a></li>
+                <li><a href="#facilities" onclick="toggleMenu()">Facilities</a></li>
+                <li><a href="#gallery" onclick="toggleMenu()">Gallery</a></li>
+                <li><a href="#apply" onclick="toggleMenu()">Admission Form</a></li>
+                <li><a href="#3d-moon" onclick="toggleMenu()">3D Moon</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </ul>
+
+            <button class="btn-apply" onclick="openAdmissionModal()"><i class="fas fa-paper-plane"></i> Apply</button>
+        </nav>
+    </div>
 
     <!-- HERO SECTION -->
     <section class="hero" id="home">
@@ -816,6 +921,36 @@
                     " 10-10-2026 Dear Parents /Students our School is Open Today at 7:30 am to 1 :00pm "
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- STUDENT RESULT & RANKS DROPDOWN SECTION -->
+    <section class="results-section" id="results">
+        <h2 class="section-header"><i class="fas fa-trophy" style="color: var(--accent-orange);"></i> Student Results &amp; Toppers Rank</h2>
+        <p style="color: #7F8C8D;">Select class from the dropdown list below to view top performers.</p>
+
+        <div class="results-container">
+            <div class="dropdown-box">
+                <label for="classDropdown"><i class="fas fa-filter"></i> Select Class:</label>
+                <select id="classDropdown" class="class-select" onchange="filterResults()">
+                    <option value="class3">Class 3rd</option>
+                    <option value="class4">Class 4th</option>
+                </select>
+            </div>
+
+            <!-- Table Displaying Results -->
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Student Name</th>
+                        <th>Marks Obtained</th>
+                    </tr>
+                </thead>
+                <tbody id="resultTableBody">
+                    <!-- Dynamic Data loaded via JS -->
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -922,7 +1057,7 @@
     <!-- GALLERY SECTION -->
     <section class="gallery-section" id="gallery">
         <h2 class="section-header" style="text-align: center;">Life at Crescent Public School</h2>
-        <div class="gallery-grid">
+       <div class="gallery-grid">
             <div class="gallery-card">
                 <img src="photo4.jpg.jpeg" alt="Student Celebration">
                 <p>Children's Activities</p>
@@ -957,6 +1092,10 @@
             </div>
            <div class="gallery-card">
                 <img src="photo9.jpg.jpeg" alt="Teachers Staff">
+                <p>Faculty &amp; Management</p>
+            </div>
+           <div class="gallery-card">
+                <img src="photo3.jpg.jpeg" alt="Teachers Staff">
                 <p>Faculty &amp; Management</p>
             </div>
         </div>
@@ -1036,6 +1175,43 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
+        // --- STUDENT RESULTS DROPDOWN DATA & LOGIC ---
+        const studentResultsData = {
+            class3: [
+                { rank: "1st", name: "Alihat Parween", marks: "650", badge: "rank-1", icon: "fa-trophy" },
+                { rank: "2nd", name: "Rahul Kumar", marks: "600", badge: "rank-2", icon: "fa-medal" },
+                { rank: "3rd", name: "Sonu Kumar", marks: "558", badge: "rank-3", icon: "fa-award" }
+            ],
+            class4: [
+                { rank: "1st", name: "Mohan Sharma", marks: "651", badge: "rank-1", icon: "fa-trophy" },
+                { rank: "2nd", name: "Sonu Sharma", marks: "620", badge: "rank-2", icon: "fa-medal" },
+                { rank: "3rd", name: "Sweety Kumari", marks: "615", badge: "rank-3", icon: "fa-award" }
+            ]
+        };
+
+        function filterResults() {
+            const selectedClass = document.getElementById("classDropdown").value;
+            const tableBody = document.getElementById("resultTableBody");
+            const data = studentResultsData[selectedClass] || [];
+
+            tableBody.innerHTML = "";
+
+            data.forEach(item => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td><span class="badge-rank ${item.badge}"><i class="fas ${item.icon}"></i> ${item.rank}</span></td>
+                    <td><strong>${item.name}</strong></td>
+                    <td><span style="color: var(--primary-blue); font-size: 1.05rem;">${item.marks}</span></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            filterResults();
+        });
+
+        // --- TEACHERS PORTAL & MODALS LOGIC ---
         const ATTENDANCE_URL = "https://kesharirajesh239-lang.github.io/Teacher-Attendance-Portal/"; 
 
         function openPassModal() {
@@ -1051,13 +1227,13 @@
             const enteredPass = document.getElementById('passInput').value;
             if (enteredPass === "CPS841226") {
                 closePassModal();
-                window.location.href = ATTENDANCE_URL; // Smooth redirect without popup blockage
+                window.location.href = ATTENDANCE_URL;
             } else {
                 alert("❌ Incorrect Password! Access Denied.");
             }
         }
 
-        // Modal and Mobile Navigation Functions
+        // Auto Open Admission Modal after 1 sec
         window.addEventListener('DOMContentLoaded', (event) => {
             setTimeout(() => {
                 document.getElementById('admissionModal').style.display = 'flex';
@@ -1088,7 +1264,7 @@
             }
         }
 
-        // THREE.JS REALISTIC 3D CRESCENT MOON ENGINE
+        // --- THREE.JS REALISTIC 3D CRESCENT MOON ENGINE ---
         const moonContainer = document.getElementById('moon-canvas-container');
         
         const moonScene = new THREE.Scene();
